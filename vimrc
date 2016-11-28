@@ -50,27 +50,8 @@ endif
 if has('gui_running')
     " Remove all unnecessary controls to maximise screen space
     set guioptions=0
-    " Twilight is my favourite colour scheme, second only to Monokai (I always prefer dark themes)
-    " Obviously this will only work if you've downloaded and installed twilight.vim
-    color twilight
-
-    " Hack I found to allow vim to display in fullscreen. Since this isn't built into vim you have to use an external program or library
-    if has('gui_gtk2') 
-        map <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
-    endif
-    if has('gui_win32')
-        " The default font in Windows vim is awful
-        set guifont=Consolas:h11:cANSI
-        map <F11> :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-    endif
 endif
 
-" Disable cursor keys - not really necessary but I originally had this to try and help myself get used to HJKL navigation
-"for prefix in ['i', 'n', 'v']
-"    for key in ['<Up>', '<Down>', '<Left>', '<Right>']
-"        exe prefix . "noremap " . key . " <Nop>"
-"    endfor
-"endfor
 let g:lightline = {
     \'colorscheme': 'wombat',
     \ }
