@@ -71,3 +71,8 @@ endif
 "        exe prefix . "noremap " . key . " <Nop>"
 "    endfor
 "endfor
+let g:lightline = {
+    \'colorscheme': 'wombat',
+    \ }
+set laststatus=2
+
