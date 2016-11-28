@@ -40,7 +40,12 @@ map <F10> :tabp<CR>
 " More custom key bindings
 let mapleader=" "
 map <leader>s :source ~/.vimrc<CR>
-"noremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+"noremap <silent> <Esc>:nohlsearch<Bar>:echo<CR>
+
+augroup reload_vimrc
+    autocmd!
+    autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
+augroup END 
 
 color twilight
 
@@ -57,10 +62,61 @@ endif
 if has('gui_running')
     " Remove all unnecessary controls to maximise screen space
     set guioptions=0
+    set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 12
 endif
 
 let g:lightline = {
-    \'colorscheme': 'wombat',
-    \ }
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightlineFugitive',
+      \   'readonly': 'LightlineReadonly',
+      \   'modified': 'LightlineModified',
+      \   'filename': 'LightlineFilename'
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+
+function! LightlineModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! LightlineReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return "⭤"
+  else
+    return ""
+  endif
+endfunction
+
+function! LightlineFugitive()
+  if exists("*fugitive#head")
+    let branch = fugitive#head()
+    return branch !=# '' ? '⭠ '.branch : ''
+  endif
+  return ''
+endfunction
+
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+       \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
 set laststatus=2
+set noshowmode
 
