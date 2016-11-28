@@ -14,7 +14,7 @@ set wildmode=list:longest,full
 set wildmenu
 
 " Highlight all instances of a pattern searched for
-"set hlsearch
+set hlsearch
 
 " Highlight the line the cursor is currently on
 set cursorline
@@ -36,6 +36,13 @@ map <F7> :bn<CR>
 map <F8> :bp<CR>
 map <F9> :tabn<CR>
 map <F10> :tabp<CR>
+
+" More custom key bindings
+let mapleader=" "
+map <leader>s :source ~/.vimrc<CR>
+"noremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+
+color twilight
 
 " Enable UTF-8 support for extended character sets
 if has('multi_byte')
