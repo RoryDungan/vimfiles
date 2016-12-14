@@ -28,6 +28,9 @@ set number
 " Enable syntax highlighting
 syntax on
 
+" diff options
+set diffopt=vertical
+
 " Make copy and paste work with the system clipboard
 set clipboard=unnamed
 
