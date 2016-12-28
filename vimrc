@@ -123,3 +123,5 @@ endfunction
 set laststatus=2
 set noshowmode
 
+map <C-n> :NERDTreeToggle<CR>
+
