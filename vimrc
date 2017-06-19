@@ -9,12 +9,17 @@ set shiftwidth=4
 set expandtab
 set autoindent
 
+" Make backspace work like most other apps.
+set backspace=2
+
 " Enable autocompletion for file paths
 set wildmode=list:longest,full
 set wildmenu
 
-" Highlight all instances of a pattern searched for
+" Highlight all instances of a pattern searched for and use case-insensitive
+" search.
 set hlsearch
+set smartcase
 
 " Highlight the line the cursor is currently on
 set cursorline
