@@ -40,10 +40,10 @@ set diffopt=vertical
 set clipboard=unnamed
 
 " Easier movment between tabs and buffers
-map <F7> :bn<CR>
-map <F8> :bp<CR>
-map <F9> :tabn<CR>
-map <F10> :tabp<CR>
+map <F7> :bp<CR>
+map <F8> :bn<CR>
+map <F9> :tabp<CR>
+map <F10> :tabn<CR>
 
 " More custom key bindings
 let mapleader=" "
