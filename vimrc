@@ -12,6 +12,8 @@ set autoindent
 " Make backspace work like most other apps.
 set backspace=2
 
+set ttimeoutlen=0
+
 " Enable autocompletion for file paths
 set wildmode=list:longest,full
 set wildmenu
@@ -32,6 +34,7 @@ set number
 
 " Enable syntax highlighting
 syntax on
+filetype plugin indent on
 
 " diff options
 set diffopt=vertical
@@ -70,7 +73,11 @@ endif
 if has('gui_running')
     " Remove all unnecessary controls to maximise screen space
     set guioptions=0
-    set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 12
+
+    "set macligatures
+
+    "set guifont=Ubuntu\ Mono\ derivative\ Powerline:h14
+    set guifont=Fira\ Code\ Retina:h12
 endif
 
 let g:lightline = {
@@ -105,7 +112,7 @@ function! LightlineReadonly()
   if &filetype == "help"
     return ""
   elseif &readonly
-    return "⭤"
+    return "RO"
   else
     return ""
   endif
@@ -114,7 +121,7 @@ endfunction
 function! LightlineFugitive()
   if exists("*fugitive#head")
     let branch = fugitive#head()
-    return branch !=# '' ? '⭠ '.branch : ''
+    return branch !=# '' ? 'x '.branch : ''
   endif
   return ''
 endfunction
